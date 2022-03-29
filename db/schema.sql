@@ -6,7 +6,7 @@ CREATE DATABASE service_dev;
 CREATE TABLE meetingRoom(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    capacity NUMERIC NOT NULL,
+    capacity INTEGER NOT NULL,
     floor INTEGER NOT NULL
 );
 
