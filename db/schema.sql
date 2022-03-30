@@ -3,6 +3,9 @@ CREATE DATABASE service_dev;
 
 \c service_dev;
 
+DROP TABLE IF EXISTS meetingRoom CASCADE;
+DROP TABLE IF EXISTS bookings CASCADE;
+
 CREATE TABLE meetingRoom(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -10,12 +13,12 @@ CREATE TABLE meetingRoom(
     floor INTEGER NOT NULL
 );
 
-CREATE TABLE booking(
+CREATE TABLE bookings(
     id SERIAL PRIMARY KEY,
-    startDate TEXT NOT NULL,
-    endDate TEXT NOT NULL,
-    meetingName TEXT NOT NULL,
+    start_date TEXT NOT NULL,
+    end_date TEXT NOT NULL,
+    meeting_name TEXT NOT NULL,
     attendees VARCHAR,
-    meetingRoomId INTEGER REFERENCES meetingRoom (id) ON DELETE CASCADE
+    meetingroom_id INTEGER REFERENCES meetingRoom (id) ON DELETE CASCADE
 );
 

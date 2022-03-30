@@ -9,7 +9,7 @@ const getMeetingRoom = async (id) => {
 };
 const getAllFutureBookingsOfMeetingRoom = async (id) => {
   return await db.any(
-    "select meetingRoom.name as name, meetingRoom.capacity as capcity, meetingRoom.floor as floor, booking.meetingName, booking.startdate, booking.enddate, booking.attendees from meetingRoom join booking on  booking.meetingroomid = meetingRoom.id where meetingRoom.id = $1",
+    "select meetingRoom.name as name, meetingRoom.capacity as capcity, meetingRoom.floor as floor, booking.meetingName, booking.startdate, booking.enddate, booking.attendees from meetingRoom join booking on  booking.meetingroom_Id = meetingRoom.id where meetingRoom.id = $1",
     id
   );
 };
