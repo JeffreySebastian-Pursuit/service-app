@@ -105,7 +105,7 @@ function Bookings () {
           required
         />
         <label htmlFor="attendees" className="text-secondary">
-          Meeting Name:
+          Attendees:
         </label>
         <input
           value={attendees}

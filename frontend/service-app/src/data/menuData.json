@@ -1,0 +1,14 @@
+[
+    {
+        "text":  "Meeting Rooms",
+        "url" : "/meetingrooms"
+    },
+    {
+        "text": "Bookings",
+        "url" : "/bookings"
+    },
+    {
+        "text": "New Room",
+        "url" : "/meetingrooms/new"
+    }
+]

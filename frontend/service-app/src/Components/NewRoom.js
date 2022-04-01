@@ -13,63 +13,86 @@ function NewRoom () {
   });
   let history = useHistory ();
 
-  const createRoom = async (newRoom) => {
+  const createRoom = async newRoom => {
     try {
-      await axios.post(`${API}/meeting-rooms`, newRoom);
+      await axios.post (`${API}/meeting-rooms`, newRoom);
       history.push ('/meetingrooms');
-      alert('You just created a New Room available')
+      alert ('You just created a New Room available');
     } catch (error) {
       return error;
     }
   };
 
-  const handleChange = (e)=> {
-    setNewRoom ({ ...newRoom, [e.target.id]: e.target.value});
+  const handleChange = e => {
+    setNewRoom ({...newRoom, [e.target.id]: e.target.value});
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault ();
     createRoom (newRoom);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Create a Room</h2>
-        <label htmlFor="name" className="text-secondary">
-          Meeting Name:
-        </label>
-        <input
-          value={newRoom.name}
-          type="text"
-          id="name"
-          onChange={handleChange}
-          placeholder="Enter room name"
-          required
-        />
-        <label htmlFor="floor" className="text-secondary">
-          Floor:
-        </label>
-        <input
-          value={newRoom.floor}
-          type="number"
-          id="floor"
-          onChange={handleChange}
-          placeholder="Enter floor"
-          required
-        />
-        <label htmlFor="capacity" className="text-secondary">
-          Capacity:
-        </label>
-        <input
-          value={newRoom.capacity}
-          type="number"
-          id="capacity"
-          onChange={handleChange}
-          placeholder="Enter floor"
-          required
-        />
-        <button type="submit">Submit</button>
+      <h2 class='mb-5 ml-5'>Create a Room</h2>
+      <form onSubmit={handleSubmit} class="col-lg-5 offset-lg-4 ">
+        <div class="column justify-content-center">
+          <div class="row mb-3">
+            <label htmlFor="name" class="col-sm-3 col-form-label">
+              Meeting Name:{' '}
+            </label>
+            <div class="col-sm-5">
+              <input
+                class="form-control"
+                value={newRoom.name}
+                type="text"
+                id="name"
+                onChange={handleChange}
+                placeholder="Enter room name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label htmlFor="floor" class="col-sm-3 col-form-label">
+              Floor:
+            </label>
+
+            <div class="col-sm-5">
+              <input
+                class="form-control"
+                value={newRoom.floor}
+                type="number"
+                id="floor"
+                onChange={handleChange}
+                placeholder="Enter floor"
+                min="0"
+                required
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label htmlFor="capacity" class="col-sm-3 col-form-label">
+              Capacity:
+            </label>
+            <div class="col-sm-5">
+              <input
+                class="form-control"
+                value={newRoom.capacity}
+                type="number"
+                id="capacity"
+                onChange={handleChange}
+                placeholder="Enter capacity"
+                min="0"
+                required
+              />
+            </div>
+          </div>
+          <div class="col text-center">
+            <button type="submit" class="mr-5 btn btn-success">Submit</button>
+          </div>
+        </div>
       </form>
 
     </div>

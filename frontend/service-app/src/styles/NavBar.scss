@@ -1,0 +1,57 @@
+.navbar {
+  &__logo {
+    color: blue;
+    float: left;
+    padding-top: 15px;
+  }
+
+  &__menuItems {
+    // float: right;
+    ul {
+      list-style-type: none;
+      text-align: center;
+      li {
+        display: inline;
+        margin-left: 35px;
+        margin-right: 35px;
+
+        a {
+          text-decoration: none;
+          color: black;
+        }
+      }
+    }
+  }
+  &__collapsedMenuIcon {
+    display: none;
+  }
+}
+
+@media only screen and(max-width: 440px) {
+  .navbar {
+    &__menuItems {
+      padding: 0;
+
+      display: none;
+
+      &-active {
+        display: block;
+        position: absolute;
+        top: 60px;
+        background-color: white;
+        width: 100%;
+        border-bottom: 1px solid black;
+        text-align: center;
+        li {
+          display: block;
+          margin: 10px 0;
+        }
+      }
+    }
+    &__collapsedMenuIcon {
+      display: block;
+      float: right;
+      font-size: 40px;
+    }
+  }
+}
