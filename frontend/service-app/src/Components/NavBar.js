@@ -21,7 +21,7 @@ const NavBar = () => {
             return (
               <li key={i}>
                 {' '}
-                <NavLink exact to={url}>
+                <NavLink exact to={url} >
                   {text}
                 </NavLink>
                 {/* <a href={url}>{text} </a>{" "} */}

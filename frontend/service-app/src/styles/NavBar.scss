@@ -1,13 +1,14 @@
 .navbar {
   &__logo {
-    color: blue;
+    // color: blue;
     float: left;
     padding-top: 15px;
   }
 
   &__menuItems {
-    // float: right;
+    float: center;
     ul {
+        justify-content: center;
       list-style-type: none;
       text-align: center;
       li {
