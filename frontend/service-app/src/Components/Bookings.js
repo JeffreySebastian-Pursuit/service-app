@@ -52,9 +52,9 @@ function Bookings () {
     [id]
   );
   const handleChange = e => {
-    debugger
+    // debugger
     setNewBookRoom ({...newBookRoom, [e.target.id]: e.target.value});
-    debugger
+    // debugger
   };
 
   const handleSubmit = e => {

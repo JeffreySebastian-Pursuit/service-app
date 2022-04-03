@@ -2,14 +2,16 @@ import axios from 'axios';
 import {apiURL} from '../Util/apiURL';
 import {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
+import room from './rooms.webp';
 import moment from 'moment';
+import '../styles/BookingDetails.scss'
 
 const API = apiURL ();
 function BookingsDetails () {
   const [bookingDetails, setBookingDetails] = useState ({});
-  const [loading, setLoading] = useState (true);
   const {id} = useParams ();
   let history = useHistory ();
+ 
 
   useEffect (
     () => {
@@ -47,37 +49,43 @@ function BookingsDetails () {
     }
   };
   const {floor, meeting_name, start_date, end_date} = bookingDetails;
+  const upperCaseFirstLetter = name => {
+    return name?.charAt (0).toUpperCase () + name?.substring (1).toLowerCase ();
+  };
   console.log (bookingDetails);
   return (
-    <div class="container mt-5">
-      <div class="row aling-items-center">
-        <di class="col-6 mx-auto">
-          <div class="card shadow border border-4">
-            <div class="ml-3 card-body d-flex flex-column align-items-left">
-              <h1 class="mb-5">
-                {meeting_name}
-              </h1>
-              <h3>
-                🕘 &nbsp; Start:
-                {' '}
-                {moment (start_date).format ('MM/DD/YYYY, h:mm a')}
-              </h3>
-              <h3>
-                🕘 &nbsp; End: {moment (end_date).format ('MM/DD/YYYY, h:mm a')}
-              </h3>
-              <h3>🏢 &nbsp; Floor: {floor}</h3>
-            </div>
-            <div class="col text-left mb-5 ml-4">
+    <div class="container">
+      <h1>{upperCaseFirstLetter(meeting_name)}</h1>
+      <div class="cardcontainer">
+        <div class="photo">
+          {' '}<img src={room} alt="room" />
+          <div class="photos" />
+        </div>
+        <div class="content">
+          <p class="txt4">
+            🕘 &nbsp; Start:
+            {moment (start_date).format ('MM/DD/YYYY, h:mm a')}
+          </p>
+          <p class="txt5">
+            {' '}
+            🕘 &nbsp; End:
+            {' '}
+            {moment (end_date).format ('MM/DD/YYYY, h:mm a')}
+          </p>
+          <p class="txt2">
+            🏢 &nbsp; Floor: {floor}
+          </p>
+          <div class="col text-left mb-5 ml-4">
               <button onClick={handleDelete} class="btn btn-outline-secondary">
                 Cancel
               </button>
-
             </div>
-          </div>
-        </di>
+        </div>
+
       </div>
     </div>
   );
 }
+
 
 export default BookingsDetails;
