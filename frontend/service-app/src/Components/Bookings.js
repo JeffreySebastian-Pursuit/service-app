@@ -59,17 +59,15 @@ function Bookings () {
     e.preventDefault ();
     createBooking (newBookRoom);
   };
-
   const {name, capacity, floor} = room;
   const {meeting_name, start_date, end_date, attendees} = newBookRoom;
   return (
     <div>
-
       <div>
         <div class="d-flex justify-content-center border-bottom">
           <h1 class="p-5 bd-highlight">{name}</h1>
-          <h3 class="p-5 bd-highlight"> 👥 &nbsp; Capity: {capacity}</h3>
-          <h3 class="p-5 bd-highlight"> 🏢 &nbsp; Floor: {floor}</h3>
+          <h2 class="p-5 bd-highlight"> 👥 &nbsp; Capity: {capacity}</h2>
+          <h2 class="p-5 bd-highlight"> 🏢 &nbsp; Floor: {floor}</h2>
         </div>
       </div>
       <div class="container">
@@ -123,11 +121,15 @@ function Bookings () {
         <div class="right" />
       </div>
       <div>
-        <div class='mt-5'>
+        <div class="mt-5">
           {bookRoom.map ((room, index) => {
             return (
-              <div key={index} class="w-50 card container d-flex justify-content-center">
-                <div class='ml-5 mb-5 mt-5' >
+              <div
+                key={index}
+                class=" card container d-flex justify-content-center"
+                id="cardwidth"
+              >
+                <div class="ml-5 mb-5 mt-5">
                   <h1>{room.meeting_name}</h1>
                   <h3>
                     {' '}

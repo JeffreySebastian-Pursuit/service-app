@@ -1,6 +1,6 @@
+
 .navbar {
   &__logo {
-    // color: blue;
     float: left;
     padding-top: 15px;
   }
@@ -17,7 +17,7 @@
 
         a {
           text-decoration: none;
-          color: blue;
+          color: rgb(36, 36, 41);
           font-size: 20px;
         }:hover{
           color:white;
@@ -27,6 +27,11 @@
   }
   &__collapsedMenuIcon {
     display: none;
+  }
+  .navbar-brand{
+    color: black;
+  }:hover{
+    color: white;
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/Home.scss';
 import room from '../Components/rooms.webp';
+import '../styles/Home.scss'
 function Home () {
   return (
     <div class="mt-5">

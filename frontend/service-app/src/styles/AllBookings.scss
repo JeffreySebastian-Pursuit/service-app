@@ -8,14 +8,15 @@ div #container{
   div #container{
       display: grid;
       grid-template-columns: auto;
+      margin-top: 50px;
   }
 }
-
 
 @media only screen and(max-width: 1000px) {
   div #container{
       display: grid;
       grid-template-columns: auto;
+      margin-top: 50px;
   }
 }
 
