@@ -5,12 +5,16 @@ const {
   getMeetingRoom,
   createMeetingRoom,
   getAllFutureBookingsOfMeetingRoom,
+  availableRooms,
 } = require("../queries/meetingRoom");
 
 /* GET home page. */
 meetingRooms.get("/", async (req, res) => {
   const meetingRooms = await getAllMeetingRooms();
   res.json(meetingRooms);
+});
+meetingRooms.get("/available", async (req, res) => {
+  return res.json(await availableRooms());
 });
 
 meetingRooms.get("/:id", async (req, res) => {

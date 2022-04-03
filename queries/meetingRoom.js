@@ -9,7 +9,7 @@ const getMeetingRoom = async (id) => {
 };
 const getAllFutureBookingsOfMeetingRoom = async (id) => {
   return await db.any(
-    "select meetingRoom.name as name, meetingRoom.capacity as capcity, meetingRoom.floor as floor, booking.meetingName, booking.startdate, booking.enddate, booking.attendees from meetingRoom join booking on  booking.meetingroom_Id = meetingRoom.id where meetingRoom.id = $1",
+    "select meetingRoom.name as name, meetingRoom.capacity as capcity, meetingRoom.floor as floor, bookings.meeting_name, bookings.start_date, bookings.end_date, bookings.attendees from meetingRoom join bookings on  bookings.meetingroom_id = meetingRoom.id where meetingRoom.id =$1",
     id
   );
 };
@@ -21,9 +21,16 @@ const createMeetingRoom = async (newMeeting) => {
   );
 };
 
+const availableRooms = async () => {
+  return await db.any(
+    "select meetingRoom.id as roomId, meetingRoom.floor as floor, meetingRoom.capacity as capacity, bookings.start_date as start, bookings.end_date as end_date from meetingRoom Join bookings on bookings.meetingroom_id = meetingRoom.id;"
+  );
+};
+
 module.exports = {
   getAllMeetingRooms,
   getMeetingRoom,
   createMeetingRoom,
-  getAllFutureBookingsOfMeetingRoom
+  getAllFutureBookingsOfMeetingRoom,
+  availableRooms,
 };
