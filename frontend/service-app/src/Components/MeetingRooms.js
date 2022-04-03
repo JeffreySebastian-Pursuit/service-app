@@ -2,8 +2,8 @@ import {apiURL} from '../Util/apiURL';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import moment from 'moment';
-import NewRoom from './NewRoom';
+import office from './rooms.webp';
+import '../styles/MeetingRooms.scss'
 const API = apiURL ();
 
 function MeetingRooms () {
@@ -46,93 +46,141 @@ function MeetingRooms () {
     fetchAvailableRooms ();
   }, []);
 
-  const handleChange = e => {
+  // const handleChange = e => {
     // debugger;
     // setAvailableRooms ({...availableRooms, [e.target.id]: e.target.value});
-    setNewBooking ({...newBooking, [e.target.id]: e.target.value});
+    // setNewBooking ({...newBooking, [e.target.id]: e.target.value});
     // debugger;
-  };
-  const findRooms = e => {
-    e.preventDefault ();
-    availableRooms.map ((room, index) => {
-      const {start, end_date, capacity, floor} = room;
-      if (newBooking.start !== start && newBooking.end_date !== end_date) {
-        // setAvailableRooms(newBooking)
-        debugger
-        setNewBooking({...newBooking, [newBooking.roomId]: rooms.id})
-        debugger
-      }
-    });
+  // };
+  // const findRooms = e => {
+  //   e.preventDefault ();
+  //   availableRooms.map ((room, index) => {
+  //     const {start, end_date, capacity, floor} = room;
+  //     if (newBooking.start !== start && newBooking.end_date !== end_date) {
+  //       // setAvailableRooms(newBooking)
+  //       debugger;
+  //       setNewBooking ({...newBooking, [newBooking.roomId]: rooms.id});
+  //       debugger;
+  //     }
+  //   });
+  // };
 
-  };
-
-  const {start, end_date, floor, capacity} = newBooking;
+  // const {start, end_date, floor, capacity} = newBooking;
 
   return (
     <div>
       <div>
-        <form onSubmit={findRooms}>
-          <p>Find available rooms:</p>
-          <label htmlFor="start" className="text-secondary">
-            Start:
-          </label>
-          <input
-            value={start}
-            type="datetime-local"
-            id="start"
-            onChange={handleChange}
-            placeholder="Enter start date"
-            required
-          />
-          <label htmlFor="end_date" className="text-secondary">
-            End:
-          </label>
-          <input
-            value={end_date}
-            type="datetime-local"
-            id="end_date"
-            onChange={handleChange}
-            placeholder="Enter end date"
-            required
-          />
-          <label htmlFor="floor" className="text-secondary">
-            Floor:
-          </label>
-          <input
-            value={floor}
-            type="number"
-            id="floor"
-            onChange={handleChange}
-            placeholder="Enter floor"
-            required
-          />
-          <label htmlFor="capacity" className="text-secondary">
-            Capacity:
-          </label>
-          <input
-            value={capacity}
-            type="number"
-            id="capacity"
-            onChange={handleChange}
-            placeholder="Enter capacity"
-            required
-          />
-          <button type="submit">Find</button>
-        </form>
+        {/* <form>
+          <div class="container d-flex justify-content-center">
+            <div class="card px-1 py-4">
+              <div class="card-body">
+                <h6 class="card-title mb-3">Find available room</h6>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                    Start Date: 
+                      <input
+                        class="form-control"
+                        value={start}
+                        type="datetime-local"
+                        id="start"
+                        onChange={handleChange}
+                        placeholder="Enter start date"
+                        min={start}
+                        required
+                      />
+                      {' '}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="input-group">
+                        End Date:
+                        <input
+                          class="form-control"
+                          value={end_date}
+                          type="datetime-local"
+                          id="end_date"
+                          onChange={handleChange}
+                          placeholder="Enter end date"
+                          min={end_date}
+                          required
+                        />
+                        {' '}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="input-group">
+                       Floor:
+                        <input
+                          class="form-control"
+                          value={floor}
+                          type="number"
+                          id="floor"
+                          onChange={handleChange}
+                          placeholder="Enter floor"
+                          required
+                        />
+                        {' '}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="input-group">
+                        Capacity:
+                        <input
+                          class="form-control"
+                          value={capacity}
+                          type="number"
+                          id="capacity"
+                          onChange={handleChange}
+                          placeholder="Enter capacity"
+                          required
+                        />
+                        {' '}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary btn-block confirm-button"
+                  type="submit"
+                >
+                  Find
+                </button>
+              </div>
+            </div>
+          </div>
+        </form> */}
       </div>
-      <ul>
-        {rooms.map ((room, index) => {
+      <div class='meeting-rooms'>
+        {rooms.map((room, index) => {
           return (
-            <Link exact to={`/meetingrooms/${room.id}`}>
-              <li key={index}>
-                <h1>{room.name}</h1>
-                <p>Capacity: {room.capacity}</p>
-                <p>Floor: {room.floor}</p>
-              </li>
+            <div class='card mx-auto d-flex justify-content-evenly'> 
+            <div class="d-flex flex-row align-items-center">
+            <Link exact to={`/meetingrooms/${room.id}`} class='text-decoration-none'>
+              <div key={index} class="card-body">
+                <h1 class="card-title">{room.name}</h1>
+              <img src={office} alt='room' class="card-img-top"/>
+              
+                <p class="h4">Capacity: {room.capacity}</p>
+                <p class="h4">Floor: {room.floor}</p>
+              </div>
             </Link>
+            </div>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }

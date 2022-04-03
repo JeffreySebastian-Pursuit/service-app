@@ -2,7 +2,7 @@ import axios from 'axios';
 import {apiURL} from '../Util/apiURL';
 import {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import moment from 'moment'
+import moment from 'moment';
 import '../styles/Bookings.scss';
 
 const API = apiURL ();
@@ -13,8 +13,8 @@ function Bookings () {
   const [room, setRoom] = useState ({});
   const [newBookRoom, setNewBookRoom] = useState ({
     meeting_name: '',
-    start_date: new Date().toLocaleDateString(),
-    end_date: new Date().toLocaleDateString(),
+    start_date: new Date ().toLocaleDateString (),
+    end_date: new Date ().toLocaleDateString (),
     attendees: '',
     meetingroom_id: id,
   });
@@ -52,9 +52,7 @@ function Bookings () {
     [id]
   );
   const handleChange = e => {
-    // debugger
     setNewBookRoom ({...newBookRoom, [e.target.id]: e.target.value});
-    // debugger
   };
 
   const handleSubmit = e => {
@@ -67,74 +65,87 @@ function Bookings () {
   return (
     <div>
 
-      <div class="border-bottom">
-        <div class="d-flex">
+      <div>
+        <div class="d-flex justify-content-center border-bottom">
           <h1 class="p-5 bd-highlight">{name}</h1>
           <h3 class="p-5 bd-highlight"> 👥 &nbsp; Capity: {capacity}</h3>
           <h3 class="p-5 bd-highlight"> 🏢 &nbsp; Floor: {floor}</h3>
         </div>
       </div>
-      <form onSubmit={handleSubmit}>
-        <h3>Book room:</h3>
-        <label htmlFor="meeting_name" className="text-secondary">
-          Meeting Name:
-        </label>
-        <input
-          value={meeting_name}
-          type="text"
-          id="meeting_name"
-          onChange={handleChange}
-          placeholder="Enter meeting name"
-          required
-        />
-        <label htmlFor="start_date" className="text-secondary">
-          🕘 &nbsp; Start:
-        </label>
-        <input
-          value={start_date}
-          type="datetime-local"
-          id="start_date"
-          onChange={handleChange}
-          placeholder="Enter start date"
-          required
-        />
-        <label htmlFor="end_date" className="text-secondary">
-          🕘 &nbsp; End:
-        </label>
-        <input
-          value={end_date}
-          type="datetime-local"
-          id="end_date"
-          onChange={handleChange}
-          placeholder="Enter end date"
-          required
-        />
-        <label htmlFor="attendees" className="text-secondary">
-          👥 &nbsp; Attendees:
-        </label>
-        <input
-          value={attendees}
-          type="text"
-          id="attendees"
-          onChange={handleChange}
-          placeholder="Enter attendees"
-        />
-        <button type="submit">Submit</button>
-      </form>
-
+      <div class="container">
+        <div class="left">
+          <div class="header">
+            <h2 class="animation a1">Book Room</h2>
+          </div>
+          <form class="form" onSubmit={handleSubmit}>
+            Meeting Name:
+            <input
+              class="form-field animation a4"
+              value={meeting_name}
+              type="text"
+              id="meeting_name"
+              onChange={handleChange}
+              placeholder="Enter meeting name"
+              required
+            />
+            🕘 &nbsp; Start:
+            <input
+              class="form-field animation a4"
+              value={start_date}
+              type="datetime-local"
+              id="start_date"
+              onChange={handleChange}
+              placeholder="Enter start date"
+              required
+            />
+            🕘 &nbsp; End:
+            <input
+              class="form-field animation a4"
+              value={end_date}
+              type="datetime-local"
+              id="end_date"
+              onChange={handleChange}
+              placeholder="Enter end date"
+              required
+            />
+            👥 &nbsp; Attendees:
+            <input
+              class="form-field animation a4"
+              value={attendees}
+              type="text"
+              id="attendees"
+              onChange={handleChange}
+              placeholder="Enter attendees"
+            />
+            <button class="animation a6" type="submit">Submit</button>
+          </form>
+        </div>
+        <div class="right" />
+      </div>
       <div>
-        <ul>
+        <div class='mt-5'>
           {bookRoom.map ((room, index) => {
             return (
-              <li key={index}>
-                <h1>{room.meeting_name}</h1>
-                <h3> 🕘 &nbsp; Start:&nbsp;{moment(room.start_date).format('MM/DD/YYYY, h:mm a')}</h3>
-                <h3> 🕘 &nbsp; End:&nbsp;{moment(room.end_date).format('MM/DD/YYYY, h:mm a')}</h3>
-              </li>
+              <div key={index} class="w-50 card container d-flex justify-content-center">
+                <div class='ml-5 mb-5 mt-5' >
+                  <h1>{room.meeting_name}</h1>
+                  <h3>
+                    {' '}
+                    🕘 &nbsp; Start:&nbsp;
+                    {moment (room.start_date).format ('MM/DD/YYYY, h:mm a')}
+                  </h3>
+                  <h3>
+                    {' '}
+                    🕘 &nbsp; End:&nbsp;
+                    {moment (room.end_date).format ('MM/DD/YYYY, h:mm a')}
+                  </h3>
+                </div>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
+
     </div>
   );
 }

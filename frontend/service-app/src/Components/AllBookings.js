@@ -37,18 +37,18 @@ function AllBookings () {
                   <div class="card-body">
                     <h2 class="card-title">{name}</h2>
                     <h5>{upperCaseFirstLetter (meeting_name)}</h5>
-                    <p>
+                    <p class="h4">
                       {' '}
                       🕘 &nbsp;Start:
                       {' '}
                       {moment (start_date).format ('MM/DD/YYYY, h:mm a')}
                     </p>
-                    <p>
+                    <p class='h4'>
                       🕘 &nbsp;End:
                       {' '}
                       {moment (end_date).format ('MM/DD/YYYY, h:mm a')}
                     </p>
-                    <p>🏢 &nbsp;Floor: Floor: {floor}</p>
+                    <p class='h4'>🏢 &nbsp;Floor: Floor: {floor}</p>
                   </div>
                 </Link>
               </div>

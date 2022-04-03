@@ -1,8 +1,11 @@
 import React from 'react'
+import MeetingRooms from '../Components/MeetingRooms'
 
 function Index() {
   return (
-    <div>Index</div>
+    <div>
+      <MeetingRooms />
+    </div>
   )
 }
 

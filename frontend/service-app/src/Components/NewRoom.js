@@ -35,13 +35,14 @@ function NewRoom () {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div class="container mt-5 mb-5 d-flex justify-content-center">
+      <div class="container d-flex justify-content-center">
         <div class="card px-1 py-4">
           <div class="card-body">
             <h6 class="card-title mb-3">Create a Room</h6>
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">
+                  Room Name:
                   <input
                     class="form-control"
                     value={newRoom.name}
@@ -59,7 +60,7 @@ function NewRoom () {
               <div class="col-sm-12">
                 <div class="form-group">
                   <div class="input-group">
-                    {' '}
+                    Floor:
                     <input
                       class="form-control"
                       value={newRoom.floor}
@@ -79,7 +80,7 @@ function NewRoom () {
               <div class="col-sm-12">
                 <div class="form-group">
                   <div class="input-group">
-                    {' '}
+                    Capacity:
                     <input
                       class="form-control"
                       value={newRoom.capacity}

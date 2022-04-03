@@ -6,6 +6,7 @@ import Show from './Pages/Show';
 import AllBookings from './Components/AllBookings';
 import BookingsDetails from './Components/BookingsDetails';
 import NewRoom from './Components/NewRoom';
+import Index from './Pages/Index';
 
 function App () {
   return (
@@ -14,8 +15,11 @@ function App () {
         <NavBar />
         <main>
           <Switch>
-            <Route exact path="/meetingrooms">
+            <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/meetingrooms">
+              <Index />
             </Route>
             <Route exact path="/bookings">
               <AllBookings />

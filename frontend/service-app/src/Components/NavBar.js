@@ -4,7 +4,7 @@ const NavBar = () => {
   const [active, setActive] = useState (false);
 
   return (
-    <div className="navbar">
+    <div className="navbar mb-3">
       <a class="navbar-brand" href="/">Service App</a>
       <div
         className={
@@ -13,7 +13,7 @@ const NavBar = () => {
             : 'navbar__menuItems'
         }
       >
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs mb-5">
           <li class="nav-item">
             <a class="nav-link" href="/meetingrooms">
               Meeting Rooms

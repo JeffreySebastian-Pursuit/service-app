@@ -44,6 +44,8 @@ function BookingsDetails () {
     try {
       await deleteBooking (id);
       history.push ('/bookings');
+      // eslint-disable-next-line no-restricted-globals
+      confirm("Are you sure do you want to cancel your booking?")
     } catch (error) {
       console.lof (error);
     }
@@ -54,7 +56,7 @@ function BookingsDetails () {
   };
   console.log (bookingDetails);
   return (
-    <div class="container">
+    <div class="mt-5">
       <h1>{upperCaseFirstLetter(meeting_name)}</h1>
       <div class="cardcontainer">
         <div class="photo">
@@ -75,7 +77,7 @@ function BookingsDetails () {
           <p class="txt2">
             🏢 &nbsp; Floor: {floor}
           </p>
-          <div class="col text-left mb-5 ml-4">
+          <div>
               <button onClick={handleDelete} class="btn btn-outline-secondary">
                 Cancel
               </button>
