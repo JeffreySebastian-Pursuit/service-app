@@ -1,13 +1,11 @@
 import '../styles/NavBar.scss';
 import {useState} from 'react';
-import menuData from '../data/menuData.json';
-import {NavLink} from 'react-router-dom';
 const NavBar = () => {
   const [active, setActive] = useState (false);
 
   return (
     <div className="navbar">
-      <di className="navbar__logo">Service App</di>
+      <a class="navbar-brand" href="/">Service App</a>
       <div
         className={
           active
@@ -15,20 +13,18 @@ const NavBar = () => {
             : 'navbar__menuItems'
         }
       >
-        <ul>
-          {menuData.map ((data, i) => {
-            const {text, url} = data;
-            return (
-              <li key={i}>
-                {' '}
-                <NavLink exact to={url} >
-                  {text}
-                </NavLink>
-                {/* <a href={url}>{text} </a>{" "} */}
-              </li>
-            );
-          })}
-
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="/meetingrooms">
+              Meeting Rooms
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Bookings">Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/meetingrooms/new">New Room</a>
+          </li>
         </ul>
       </div>
       <div

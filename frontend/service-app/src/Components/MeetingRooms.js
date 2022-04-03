@@ -1,57 +1,86 @@
-import { apiURL } from "../Util/apiURL";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-const API = apiURL();
+import {apiURL} from '../Util/apiURL';
+import axios from 'axios';
+import {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import moment from 'moment';
+import NewRoom from './NewRoom';
+const API = apiURL ();
 
-function MeetingRooms() {
-  const [rooms, setRooms] = useState([]);
-  var today = new Date(),
-
-  date =(today.getMonth() + 1) + '/' + today.getDate() + today.getFullYear();
-  const [availableRooms, setAvailableRooms] = useState({
-    start: date,
-    end_date: date,
+function MeetingRooms () {
+  const [rooms, setRooms] = useState ([]);
+  // var today = new Date (),
+  //   date =
+  //     today.getMonth () + 1 + '/' + today.getDate () + today.getFullYear ();
+  const [newBooking, setNewBooking] = useState ({
+    start: new Date (),
+    end_date: new Date (),
+    floor: 0,
+    capacity: 0,
+    roomId: 0,
+  });
+  const [availableRooms, setAvailableRooms] = useState ({
+    start: new Date (),
+    end_date: new Date (),
     floor: 0,
     capacity: 0,
   });
-  useEffect(() => {
+  useEffect (() => {
     const fetchAllRooms = async () => {
       try {
-        let res = await axios.get(`${API}/meeting-rooms`);
-        setRooms(res.data);
+        let res = await axios.get (`${API}/meeting-rooms`);
+        setRooms (res.data);
       } catch (error) {
-        return error
+        return error;
       }
     };
-    fetchAllRooms();
+    fetchAllRooms ();
   }, []);
 
-  useEffect(() => {
+  useEffect (() => {
     const fetchAvailableRooms = async () => {
       try {
-        let res = await axios.get(`${API}/meeting-rooms/available`);
-        setAvailableRooms(res.data);
+        let res = await axios.get (`${API}/meeting-rooms/available`);
+        setAvailableRooms (res.data);
       } catch (error) {}
     };
-    fetchAvailableRooms();
+    fetchAvailableRooms ();
   }, []);
 
-  const { start, end_date, floor, capacity } = availableRooms;
+  const handleChange = e => {
+    // debugger;
+    // setAvailableRooms ({...availableRooms, [e.target.id]: e.target.value});
+    setNewBooking ({...newBooking, [e.target.id]: e.target.value});
+    // debugger;
+  };
+  const findRooms = e => {
+    e.preventDefault ();
+    availableRooms.map ((room, index) => {
+      const {start, end_date, capacity, floor} = room;
+      if (newBooking.start !== start && newBooking.end_date !== end_date) {
+        // setAvailableRooms(newBooking)
+        debugger
+        setNewBooking({...newBooking, [newBooking.roomId]: rooms.id})
+        debugger
+      }
+    });
+
+  };
+
+  const {start, end_date, floor, capacity} = newBooking;
 
   return (
     <div>
       <div>
-        <form>
+        <form onSubmit={findRooms}>
           <p>Find available rooms:</p>
           <label htmlFor="start" className="text-secondary">
             Start:
           </label>
           <input
             value={start}
-            type="date"
+            type="datetime-local"
             id="start"
-            //   onChange={handleChange}
+            onChange={handleChange}
             placeholder="Enter start date"
             required
           />
@@ -60,9 +89,9 @@ function MeetingRooms() {
           </label>
           <input
             value={end_date}
-            type="date"
+            type="datetime-local"
             id="end_date"
-            //   onChange={handleChange}
+            onChange={handleChange}
             placeholder="Enter end date"
             required
           />
@@ -73,7 +102,7 @@ function MeetingRooms() {
             value={floor}
             type="number"
             id="floor"
-            //   onChange={handleChange}
+            onChange={handleChange}
             placeholder="Enter floor"
             required
           />
@@ -84,7 +113,7 @@ function MeetingRooms() {
             value={capacity}
             type="number"
             id="capacity"
-            //   onChange={handleChange}
+            onChange={handleChange}
             placeholder="Enter capacity"
             required
           />
@@ -92,9 +121,9 @@ function MeetingRooms() {
         </form>
       </div>
       <ul>
-        {rooms.map((room, index) => {
+        {rooms.map ((room, index) => {
           return (
-            <Link  exact to={`/meetingrooms/${room.id}`}>
+            <Link exact to={`/meetingrooms/${room.id}`}>
               <li key={index}>
                 <h1>{room.name}</h1>
                 <p>Capacity: {room.capacity}</p>

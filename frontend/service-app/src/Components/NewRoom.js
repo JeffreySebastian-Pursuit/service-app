@@ -2,6 +2,7 @@ import axios from 'axios';
 import {apiURL} from '../Util/apiURL';
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import '../styles/NewRoom.scss'
 
 const API = apiURL ();
 
@@ -33,69 +34,78 @@ function NewRoom () {
   };
 
   return (
-    <div>
-      <h2 class='mb-5 ml-5'>Create a Room</h2>
-      <form onSubmit={handleSubmit} class="col-lg-5 offset-lg-4 ">
-        <div class="column justify-content-center">
-          <div class="row mb-3">
-            <label htmlFor="name" class="col-sm-3 col-form-label">
-              Meeting Name:{' '}
-            </label>
-            <div class="col-sm-5">
-              <input
-                class="form-control"
-                value={newRoom.name}
-                type="text"
-                id="name"
-                onChange={handleChange}
-                placeholder="Enter room name"
-                required
-              />
+    <form onSubmit={handleSubmit}>
+      <div class="container mt-5 mb-5 d-flex justify-content-center">
+        <div class="card px-1 py-4">
+          <div class="card-body">
+            <h6 class="card-title mb-3">Create a Room</h6>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    value={newRoom.name}
+                    type="text"
+                    id="name"
+                    onChange={handleChange}
+                    placeholder="Enter room name"
+                    required
+                  />
+                  {' '}
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="row mb-3">
-            <label htmlFor="floor" class="col-sm-3 col-form-label">
-              Floor:
-            </label>
-
-            <div class="col-sm-5">
-              <input
-                class="form-control"
-                value={newRoom.floor}
-                type="number"
-                id="floor"
-                onChange={handleChange}
-                placeholder="Enter floor"
-                min="0"
-                required
-              />
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="input-group">
+                    {' '}
+                    <input
+                      class="form-control"
+                      value={newRoom.floor}
+                      type="number"
+                      id="floor"
+                      onChange={handleChange}
+                      placeholder="Enter floor"
+                      min="0"
+                      required
+                    />
+                    {' '}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="row mb-3">
-            <label htmlFor="capacity" class="col-sm-3 col-form-label">
-              Capacity:
-            </label>
-            <div class="col-sm-5">
-              <input
-                class="form-control"
-                value={newRoom.capacity}
-                type="number"
-                id="capacity"
-                onChange={handleChange}
-                placeholder="Enter capacity"
-                min="0"
-                required
-              />
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="input-group">
+                    {' '}
+                    <input
+                      class="form-control"
+                      value={newRoom.capacity}
+                      type="number"
+                      id="capacity"
+                      onChange={handleChange}
+                      placeholder="Enter capacity"
+                      min="0"
+                      required
+                    />
+                    {' '}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col text-center">
-            <button type="submit" class="mr-5 btn btn-success">Submit</button>
+            <button
+              class="btn btn-primary btn-block confirm-button"
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         </div>
-      </form>
+      </div>
 
-    </div>
+    </form>
   );
 }
 

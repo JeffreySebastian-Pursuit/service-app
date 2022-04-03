@@ -2,6 +2,8 @@ import axios from 'axios';
 import {apiURL} from '../Util/apiURL';
 import {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
+import moment from 'moment'
+import '../styles/Bookings.scss';
 
 const API = apiURL ();
 function Bookings () {
@@ -11,8 +13,8 @@ function Bookings () {
   const [room, setRoom] = useState ({});
   const [newBookRoom, setNewBookRoom] = useState ({
     meeting_name: '',
-    start_date: new Date (),
-    end_date: new Date (),
+    start_date: new Date().toLocaleDateString(),
+    end_date: new Date().toLocaleDateString(),
     attendees: '',
     meetingroom_id: id,
   });
@@ -50,7 +52,9 @@ function Bookings () {
     [id]
   );
   const handleChange = e => {
+    debugger
     setNewBookRoom ({...newBookRoom, [e.target.id]: e.target.value});
+    debugger
   };
 
   const handleSubmit = e => {
@@ -62,13 +66,16 @@ function Bookings () {
   const {meeting_name, start_date, end_date, attendees} = newBookRoom;
   return (
     <div>
-      <div>
-        <h1>{name}</h1>
-        <h3>Capity: {capacity}</h3>
-        <h3>Floor: {floor}</h3>
+
+      <div class="border-bottom">
+        <div class="d-flex">
+          <h1 class="p-5 bd-highlight">{name}</h1>
+          <h3 class="p-5 bd-highlight"> 👥 &nbsp; Capity: {capacity}</h3>
+          <h3 class="p-5 bd-highlight"> 🏢 &nbsp; Floor: {floor}</h3>
+        </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <p>Book room:</p>
+        <h3>Book room:</h3>
         <label htmlFor="meeting_name" className="text-secondary">
           Meeting Name:
         </label>
@@ -81,31 +88,29 @@ function Bookings () {
           required
         />
         <label htmlFor="start_date" className="text-secondary">
-          Start:
+          🕘 &nbsp; Start:
         </label>
         <input
           value={start_date}
           type="datetime-local"
-          format-value="yyyy-MM-ddTHH:mm"
           id="start_date"
           onChange={handleChange}
           placeholder="Enter start date"
           required
         />
         <label htmlFor="end_date" className="text-secondary">
-          End:
+          🕘 &nbsp; End:
         </label>
         <input
           value={end_date}
           type="datetime-local"
           id="end_date"
-          format-value="yyyy-MM-ddTHH:mm"
           onChange={handleChange}
           placeholder="Enter end date"
           required
         />
         <label htmlFor="attendees" className="text-secondary">
-          Attendees:
+          👥 &nbsp; Attendees:
         </label>
         <input
           value={attendees}
@@ -123,8 +128,8 @@ function Bookings () {
             return (
               <li key={index}>
                 <h1>{room.meeting_name}</h1>
-                <h3>Start: {room.start_date}</h3>
-                <h3>End: {room.end_date}</h3>
+                <h3> 🕘 &nbsp; Start:&nbsp;{moment(room.start_date).format('MM/DD/YYYY, h:mm a')}</h3>
+                <h3> 🕘 &nbsp; End:&nbsp;{moment(room.end_date).format('MM/DD/YYYY, h:mm a')}</h3>
               </li>
             );
           })}
