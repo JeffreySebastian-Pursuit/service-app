@@ -25,7 +25,6 @@ function Bookings () {
       history.push (`/meetingrooms`);
       alert ('Booked Successfully');
     } catch (error) {
-      // console.log(error)
       alert ('Booking is not possible');
     }
   };
@@ -66,7 +65,7 @@ function Bookings () {
       <div>
         <div class="d-flex justify-content-center border-bottom">
           <h1 class="p-5 bd-highlight">{name}</h1>
-          <h2 class="p-5 bd-highlight"> 👥 &nbsp; Capity: {capacity}</h2>
+          <h2 class="p-5 bd-highlight"> 👥 &nbsp; Capacity: {capacity}</h2>
           <h2 class="p-5 bd-highlight"> 🏢 &nbsp; Floor: {floor}</h2>
         </div>
       </div>
