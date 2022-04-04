@@ -48,7 +48,7 @@ function AllBookings () {
                       {' '}
                       {moment (end_date).format ('MM/DD/YYYY, h:mm a')}
                     </p>
-                    <p class='h4'>🏢 &nbsp;Floor: Floor: {floor}</p>
+                    <p class='h4'>🏢 &nbsp;Floor: {floor}</p>
                   </div>
                 </Link>
               </div>
