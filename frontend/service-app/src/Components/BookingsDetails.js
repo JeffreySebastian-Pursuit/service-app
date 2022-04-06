@@ -44,10 +44,8 @@ function BookingsDetails () {
     try {
       await deleteBooking (id);
       history.push ('/bookings');
-      // eslint-disable-next-line no-restricted-globals
-      confirm("Are you sure do you want to cancel your booking?")
     } catch (error) {
-      console.lof (error);
+      console.log(error);
     }
   };
   const {floor, meeting_name, start_date, end_date} = bookingDetails;
@@ -78,7 +76,7 @@ function BookingsDetails () {
             🏢 &nbsp; Floor: {floor}
           </p>
           <div>
-              <button onClick={handleDelete} class="btn btn-outline-secondary">
+              <button onClick={() => {if (window.confirm('Are you sure you wish to cancel this booking?')) handleDelete(id)}} class="btn btn-outline-secondary" type='cancel'>
                 Cancel
               </button>
             </div>
